@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card-border: var(--card-border);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --font-sans: 'Outfit', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #0A0A0F;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #1428A0;
+  --card: #F9FAFB;
+  --card-foreground: #0A0A0F;
+  --card-border: #E5E7EB;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0F;
+  --primary: #1428A0;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F3F4F6;
+  --secondary-foreground: #111827;
+  --muted: #F3F4F6;
+  --muted-foreground: #6B7280;
+  --accent: #00D4FF;
+  --accent-foreground: #0A0A0F;
+  
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #0A0A0F;
+  --foreground: #F9FAFB;
+  --border: #1F2937;
+  --input: #1F2937;
+  --ring: #00D4FF;
+  --card: #12121A;
+  --card-foreground: #F9FAFB;
+  --card-border: #1F2937;
+  --popover: #12121A;
+  --popover-foreground: #F9FAFB;
+  --primary: #1428A0;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1F2937;
+  --secondary-foreground: #F9FAFB;
+  --muted: #1F2937;
+  --muted-foreground: #9CA3AF;
+  --accent: #00D4FF;
+  --accent-foreground: #0A0A0F;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-body antialiased bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+  }
+}
