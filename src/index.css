@@ -91,4 +91,7 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans;
   }
+  tr:hover td[class*="sticky"] {
+  background-color: var(--muted) !important;
+}
 }

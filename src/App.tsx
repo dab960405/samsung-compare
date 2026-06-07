@@ -330,27 +330,27 @@ function Page() {
         </div>
 
         <div className="overflow-x-auto rounded-2xl border border-border shadow-2xl bg-card">
-          <table className="w-full text-left border-collapse min-w-[800px]">
+          <table className="w-full text-left border-collapse min-w-[600px]">
             <thead>
               <tr className="bg-background sticky top-[72px] z-20 shadow-sm">
-                <th className="p-4 border-b border-border w-1/3 text-muted-foreground font-sans font-semibold uppercase tracking-wider text-sm sticky left-0 bg-background z-30">
+                <th className="p-4 border-b border-border w-[38%] text-muted-foreground font-sans font-semibold uppercase tracking-wider text-sm sticky left-0 bg-background z-30 border-r border-border/50">
                   Criterio
                 </th>
-                <th className="p-4 border-b border-border w-1/3 font-sans font-bold text-lg text-primary">Galaxy S21 FE</th>
-                <th className="p-4 border-b border-border w-1/3 font-sans font-bold text-lg text-accent">Galaxy Tab S7</th>
+                <th className="p-4 border-b border-border w-[31%] font-sans font-bold text-lg text-primary">Galaxy S21 FE</th>
+                <th className="p-4 border-b border-border w-[31%] font-sans font-bold text-lg text-accent">Galaxy Tab S7</th>
               </tr>
             </thead>
             <tbody>
               {Object.entries(groupedData).map(([section, rows]) => (
                 <React.Fragment key={section}>
                   <tr className="bg-primary/10 border-y border-border">
-                    <td colSpan={3} className="p-4 font-sans font-bold text-primary sticky left-0">
+                    <td colSpan={3} className="p-4 font-sans font-bold text-primary">
                       {section}
                     </td>
                   </tr>
                   {rows.map((row) => (
                     <tr key={row.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                      <td className="p-4 text-sm font-medium text-muted-foreground sticky left-0 bg-card/95 backdrop-blur-sm z-10 border-r border-border/30">
+                      <td className="p-4 text-sm font-medium text-muted-foreground sticky left-0 bg-card z-10 border-r border-border/50 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.15)]">
                         <HighlightText text={row.criterio} highlight={searchTerm} />
                       </td>
                       <td className="p-4 text-sm relative">
