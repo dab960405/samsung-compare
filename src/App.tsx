@@ -329,15 +329,67 @@ function Page() {
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl border border-border shadow-2xl bg-card">
-          <table className="w-full text-left border-collapse min-w-[600px]">
+        {/* ── MÓVIL: card layout ── */}
+        <div className="block md:hidden space-y-4">
+          {Object.keys(groupedData).length === 0 && (
+            <div className="p-12 text-center text-muted-foreground bg-card rounded-2xl border border-border">
+              No se encontraron resultados para su búsqueda.
+            </div>
+          )}
+          {Object.entries(groupedData).map(([section, rows]) => (
+            <div key={section}>
+              {/* Cabecera de sección */}
+              <div className="px-4 py-2.5 bg-primary/10 rounded-xl font-sans font-bold text-primary text-sm mb-3 border border-primary/20">
+                {section}
+              </div>
+              {/* Cards por fila */}
+              {rows.map((row) => (
+                <div key={row.id} className="bg-card border border-border rounded-2xl p-4 mb-3 shadow-sm">
+                  {/* Criterio */}
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 pb-2 border-b border-border/50">
+                    <HighlightText text={row.criterio} highlight={searchTerm} />
+                  </p>
+                  {/* Dos columnas */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className={`rounded-xl p-3 relative ${row.winner === 's21fe' ? 'bg-primary/10 border border-primary/30' : 'bg-background border border-border/50'}`}>
+                      <p className="text-[10px] text-primary font-bold uppercase tracking-widest mb-1.5">S21 FE</p>
+                      <p className="text-sm text-foreground leading-snug">
+                        <HighlightText text={row.s21fe} highlight={searchTerm} />
+                      </p>
+                      {row.winner === 's21fe' && (
+                        <span className="mt-2 inline-block bg-primary text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-widest">
+                          Ventaja
+                        </span>
+                      )}
+                    </div>
+                    <div className={`rounded-xl p-3 relative ${row.winner === 'tabs7' ? 'bg-accent/10 border border-accent/30' : 'bg-background border border-border/50'}`}>
+                      <p className="text-[10px] text-accent font-bold uppercase tracking-widest mb-1.5">Tab S7</p>
+                      <p className="text-sm text-foreground leading-snug">
+                        <HighlightText text={row.tabs7} highlight={searchTerm} />
+                      </p>
+                      {row.winner === 'tabs7' && (
+                        <span className="mt-2 inline-block bg-accent text-black text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-widest">
+                          Ventaja
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {/* ── DESKTOP: tabla original ── */}
+        <div className="hidden md:block overflow-x-auto rounded-2xl border border-border shadow-2xl bg-card">
+          <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-background sticky top-[72px] z-20 shadow-sm">
-                <th className="p-4 border-b border-border w-[38%] text-muted-foreground font-sans font-semibold uppercase tracking-wider text-sm sticky left-0 bg-background z-30 border-r border-border/50">
+                <th className="p-4 border-b border-border w-1/3 text-muted-foreground font-sans font-semibold uppercase tracking-wider text-sm">
                   Criterio
                 </th>
-                <th className="p-4 border-b border-border w-[31%] font-sans font-bold text-lg text-primary">Galaxy S21 FE</th>
-                <th className="p-4 border-b border-border w-[31%] font-sans font-bold text-lg text-accent">Galaxy Tab S7</th>
+                <th className="p-4 border-b border-border w-1/3 font-sans font-bold text-lg text-primary">Galaxy S21 FE</th>
+                <th className="p-4 border-b border-border w-1/3 font-sans font-bold text-lg text-accent">Galaxy Tab S7</th>
               </tr>
             </thead>
             <tbody>
@@ -350,7 +402,7 @@ function Page() {
                   </tr>
                   {rows.map((row) => (
                     <tr key={row.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                      <td className="p-4 text-sm font-medium text-muted-foreground sticky left-0 bg-card z-10 border-r border-border/50 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.15)]">
+                      <td className="p-4 text-sm font-medium text-muted-foreground">
                         <HighlightText text={row.criterio} highlight={searchTerm} />
                       </td>
                       <td className="p-4 text-sm relative">
